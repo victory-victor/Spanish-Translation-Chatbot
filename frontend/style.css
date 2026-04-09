@@ -1,0 +1,218 @@
+:root {
+  --primary: #8b5cf6;
+  --secondary: #06b6d4;
+  --bg-dark: #0f172a;
+  --card-bg: rgba(30, 41, 59, 0.7);
+  --text-main: #f8fafc;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+  background: radial-gradient(circle at top left, #1e1b4b, #0f172a);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin: 0;
+}
+
+.chat-container {
+  width: 100%;
+  max-width: 420px;
+  height: 650px;
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 32px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  visibility: visible;
+  position: relative; /* Needed for proper centering on mobile */
+}
+
+/* Header Section */
+header {
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.bot-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.avatar-container {
+  position: relative;
+}
+
+.avatar {
+  width: 45px;
+  height: 45px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.pulse {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: var(--primary);
+  border-radius: 14px;
+  opacity: 0.4;
+  animation: pulse-ring 2s infinite;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.9); opacity: 0.5; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+.highlight { color: var(--secondary); }
+
+.status-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.online-indicator {
+  width: 6px;
+  height: 6px;
+  background: #22c55e;
+  border-radius: 50%;
+}
+
+header p { font-size: 0.75rem; color: #94a3b8; }
+header h2 { color: white; font-size: 1rem; }
+
+/* Messages */
+#chat-box {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.message {
+  padding: 12px 18px;
+  border-radius: 18px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  max-width: 80%;
+  color: var(--text-main);
+}
+
+.user {
+  background: var(--primary);
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+
+.bot {
+  background: rgba(255, 255, 255, 0.05);
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Input Section */
+.input-area {
+  padding: 24px;
+}
+
+.input-wrapper {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 6px 6px 6px 16px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+}
+
+input {
+  background: transparent;
+  border: none;
+  color: white;
+  flex: 1;
+  outline: none;
+  font-size: 0.9rem;
+}
+
+button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+button:hover { background: var(--secondary); transform: translateY(-2px); }
+
+/* ====================== */
+/* Mobile Responsive Fix */
+/* ====================== */
+@media (max-width: 480px) {
+  .chat-container {
+    width: 90%;         /* almost full width */
+    height: 85vh;       /* almost full height */
+    border-radius: 24px;
+    margin: 0 auto;     /* horizontal centering */
+    top: 50%;           /* vertical centering */
+    transform: translateY(-50%); /* shift up half height */
+    position: relative;
+  }
+
+  #chat-box {
+    padding: 12px;
+    gap: 10px;
+    max-height: 65vh;  /* leave space for input at bottom */
+  }
+
+  .message {
+    font-size: 0.85rem;
+    padding: 10px 14px;
+    max-width: 85%;
+  }
+
+  .input-area {
+    padding: 16px;
+  }
+
+  input {
+    font-size: 0.85rem;
+  }
+
+  button {
+    width: 36px;
+    height: 36px;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+}

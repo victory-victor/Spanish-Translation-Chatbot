@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Traductor AI Pro</title>
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/4150/4150650.png">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+
+<div class="chat-wrapper">
+  <div class="chat-container">
+    <header>
+      <div class="bot-info">
+        <div class="avatar-container">
+          <div class="pulse"></div>
+          <div class="avatar">
+            <i class="fas fa-bolt"></i>
+          </div>
+        </div>
+        <div class="header-text">
+          <h2>Traductor <span class="highlight">Pro</span></h2>
+          <div class="status-row">
+            <span class="online-indicator"></span>
+            <p>Ready to translate</p>
+          </div>
+        </div>
+      </div>
+      <i class="fas fa-ellipsis-v menu-icon"></i>
+    </header>
+
+    <div id="chat-box">
+      <div class="message bot">
+        🎉 Bienvenidos! Type any English phrase, and I’ll translate it to Español—fast, easy, and fun. ¡Vamos!
+      </div>
+    </div>
+
+    <div class="input-area">
+      <div class="input-wrapper">
+        <input 
+          type="text" 
+          id="user-input" 
+          placeholder="Message English to Spanish..."
+          onkeypress="handleKey(event)"
+        />
+        <button onclick="sendMessage()" id="send-btn">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
