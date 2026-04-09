@@ -98,7 +98,6 @@ async function sendMessage() {
         const translated = data.translated || "❌ Error";
 
         // 3. Show bot message & Speak
-        speakSpanish("Bienvenidos! Type any English phrase, and I'll translate it to Español—fast, easy, and fun. ¡Vamos!")
         addMessage(translated, "bot");
         speakSpanish(translated);
 
