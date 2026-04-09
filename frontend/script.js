@@ -88,7 +88,7 @@ async function sendMessage() {
 
     try {
         // 2. Fetch from your Python/Flask backend
-        const response = await fetch("https://spanish-translation-chatbot.onrender.com//translate", {
+        const response = await fetch("https://spanish-translation-chatbot.onrender.com/translate", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ text })
