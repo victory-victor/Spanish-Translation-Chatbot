@@ -171,23 +171,95 @@ button {
 
 button:hover { background: var(--secondary); transform: translateY(-2px); }
 
+/* Language Selector Container */
 .language-select {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
   gap: 10px;
+  padding: 10px 16px;
+}
+
+/* Select Wrapper (for custom arrow) */
+.language-select select {
+  flex: 1;
+  appearance: none; /* remove default arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+
+  padding: 10px 35px 10px 12px;
+  border-radius: 12px;
+
+  font-size: 0.85rem;
+  cursor: pointer;
+
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+/* Hover & Focus */
+.language-select select:hover {
+  border-color: var(--primary);
+}
+
+.language-select select:focus {
+  outline: none;
+  border-color: var(--secondary);
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.3);
+}
+
+/* Custom Arrow */
+.language-select {
+  position: relative;
 }
 
 .language-select select {
-  flex: 1;
-  background: rgba(255,255,255,0.05);
-  border: none;
-  color: white;
-  padding: 8px;
-  border-radius: 10px;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='20' viewBox='0 0 20 20' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M5 7l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 14px;
 }
 
-.language-select i{
+/* Swap Icon */
+.language-select i {
   color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.language-select i:hover {
+  transform: rotate(180deg) scale(1.1);
+  color: var(--secondary);
+}
+
+
+/* ===== Custom Scrollbar ===== */
+
+/* Chrome, Edge, Safari */
+#chat-box::-webkit-scrollbar {
+  width: 6px;
+}
+
+#chat-box::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#chat-box::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.5); /* primary color */
+  border-radius: 10px;
+  transition: background 0.3s;
+}
+
+#chat-box::-webkit-scrollbar-thumb:hover {
+  background: rgba(6, 182, 212, 0.8); /* secondary on hover */
+}
+
+/* Firefox */
+#chat-box {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(139, 92, 246, 0.5) transparent;
 }
