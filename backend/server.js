@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 5000;
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 app.post("/translate", async (req, res) => {
-  const { text } = req.body;
+  const { text, fromLang, toLang } = req.body;
 
   if (!text || typeof text !== "string") {
     return res.status(400).json({ error: "Invalid input" });
@@ -28,10 +28,17 @@ app.post("/translate", async (req, res) => {
     });
 
     const prompt = `
-Translate the following English text to Spanish.
-Only return the translated text.
+You are a translator.
 
-Text: ${text}
+Translate the given text from ${fromLang} to ${toLang}.
+
+Rules:
+- Only return translated text
+- Do not explain anything
+- Keep meaning accurate
+
+Text:
+"""${text}"""
 `;
 
     const result = await model.generateContent(prompt);

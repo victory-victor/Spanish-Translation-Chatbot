@@ -6,10 +6,10 @@ window.onload = () => {
         y: -20,
         ease: "power4.out"
     });
-    
+
     // Animate the initial welcome message
     const welcomeMsg = document.querySelector(".bot");
-    if(welcomeMsg) {
+    if (welcomeMsg) {
         gsap.from(welcomeMsg, {
             duration: 0.8,
             opacity: 0,
@@ -19,8 +19,8 @@ window.onload = () => {
         });
     }
     // ✅ Speak welcome message ONCE when page loads
-    speakSpanish(
-        "¡Bienvenidos! Type any English phrase, and I'll translate it to Español—fast, easy, and fun. ¡Vamos!"
+    speakText(
+        "Hola Bonjour Hallo नमस्ते مرحبا こんにちは 你好! Transform your English into a powerful global voice — translate instantly into Español, Français, Deutsch, हिन्दी, العربية, 日本語, and 中文, and connect, share, and be understood everywhere, effortlessly! ¡Vamos!"
     );
 };
 
@@ -28,7 +28,7 @@ window.onload = () => {
 function addMessage(text, sender) {
     const chatBox = document.getElementById("chat-box");
     const msg = document.createElement("div");
-    
+
     msg.classList.add("message", sender);
     msg.innerText = text;
 
@@ -55,21 +55,37 @@ function handleKey(event) {
 }
 
 // ✅ Speak Spanish text using Web Speech API (robust version)
-function speakSpanish(text) {
+function speakText(text, language) {
     if (!("speechSynthesis" in window)) {
-        console.warn("Speech synthesis not supported in this browser");
+        console.warn("Speech synthesis not supported");
         return;
     }
 
-    if (window.speechSynthesis.speaking) {
-        window.speechSynthesis.cancel();
-    }
+    // Stop any ongoing speech
+    window.speechSynthesis.cancel();
 
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = "es-ES"; 
-    utterance.rate = 1;        
-    utterance.pitch = 1;       
 
+    // Language mapping
+    const langMap = {
+        Hindi: "hi-IN",
+        Urdu: "ur-PK",
+        Chinese: "zh-CN",
+        Japanese: "ja-JP",
+        Spanish: "es-ES",
+        French: "fr-FR",
+        German: "de-DE",
+        Portuguese: "pt-PT",
+        Russian: "ru-RU",
+        Arabic: "ar-SA",
+        English: "en-US"
+    };
+
+    utterance.lang = langMap[language] || "de-DE";
+    utterance.rate = 1;
+    utterance.pitch = 1;
+
+    // Small delay for smoother speech
     setTimeout(() => {
         window.speechSynthesis.speak(utterance);
     }, 100);
@@ -77,21 +93,30 @@ function speakSpanish(text) {
 
 // ✅ Send message to backend and receive translation
 async function sendMessage() {
+
+    const fromLang = document.getElementById("from-lang").value;
+    const toLang = document.getElementById("to-lang").value;
+    
     const input = document.getElementById("user-input");
     const text = input.value.trim();
 
     if (!text) return;
 
     // 1. Show user message with animation
-    addMessage(text, "user"); 
+    addMessage(text, "user");
     input.value = "";
 
     try {
-        // 2. Fetch from your Python/Flask backend
         const response = await fetch("https://spanish-translation-chatbot.onrender.com/translate", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ text })
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                text,
+                fromLang,
+                toLang
+            })
         });
 
         const data = await response.json();
@@ -99,7 +124,7 @@ async function sendMessage() {
 
         // 3. Show bot message & Speak
         addMessage(translated, "bot");
-        speakSpanish(translated);
+        speakText(translated, toLang);
 
     } catch (error) {
         console.error("Backend Error:", error);

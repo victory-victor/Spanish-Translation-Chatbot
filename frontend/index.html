@@ -1,60 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Traductor AI Pro</title>
   <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/4150/4150650.png">
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
+
 <body>
 
-<div class="chat-wrapper">
-  <div class="chat-container">
-    <header>
-      <div class="bot-info">
-        <div class="avatar-container">
-          <div class="pulse"></div>
-          <div class="avatar">
-            <i class="fas fa-bolt"></i>
+  <div class="chat-wrapper">
+    <div class="chat-container">
+      <header>
+        <div class="bot-info">
+          <div class="avatar-container">
+            <div class="pulse"></div>
+            <div class="avatar">
+              <img style="height: 100%; width: 100%; padding: 0.3vw;"
+                src="https://cdn-icons-png.flaticon.com/512/4150/4150650.png" alt="">
+            </div>
+          </div>
+          <div class="header-text">
+            <h2>Traductor <span class="highlight">Pro</span></h2>
+            <div class="status-row">
+              <span class="online-indicator"></span>
+              <p>Ready to translate</p>
+            </div>
           </div>
         </div>
-        <div class="header-text">
-          <h2>Traductor <span class="highlight">Pro</span></h2>
-          <div class="status-row">
-            <span class="online-indicator"></span>
-            <p>Ready to translate</p>
-          </div>
+        <i class="fas fa-ellipsis-v menu-icon"></i>
+      </header>
+
+      <div id="chat-box">
+        <div class="message bot">
+          🌍✨🌎 Hola Bonjour Hallo नमस्ते مرحبا こんにちは 你好! 🌈🗣️
+          🚀💬 Transform your English into a powerful global voice — translate instantly into Español, Français,
+          Deutsch, हिन्दी, العربية, 日本語, and 中文, and connect, share, and be understood everywhere, effortlessly! 🌐⚡💫
+          🎉🌟 ¡Vamos! 💥🧭🗺️
         </div>
       </div>
-      <i class="fas fa-ellipsis-v menu-icon"></i>
-    </header>
 
-    <div id="chat-box">
-      <div class="message bot">
-        🎉 Bienvenidos! Type any English phrase, and I’ll translate it to Español—fast, easy, and fun. ¡Vamos!
-      </div>
-    </div>
+      <div class="input-area">
+        <div class="language-select">
+          <select id="from-lang">
+            <option value="English">English</option>
+          </select>
 
-    <div class="input-area">
-      <div class="input-wrapper">
-        <input 
-          type="text" 
-          id="user-input" 
-          placeholder="Message English to Spanish..."
-          onkeypress="handleKey(event)"
-        />
-        <button onclick="sendMessage()" id="send-btn">
-          <i class="fas fa-paper-plane"></i>
-        </button>
+          <i class="fas fa-exchange-alt"></i>
+
+          <select id="to-lang">
+            <option style="color: black;" value="Hindi">Hindi</option>
+            <option style="color: black;" value="Urdu">Urdu</option>
+            <option style="color: black;" value="Chinese">Chinese</option>
+            <option style="color: black;" value="Japanese">Japanese</option>
+            <option style="color: black;" value="Spanish">Spanish</option>
+            <option style="color: black;" value="French">French</option>
+            <option style="color: black;" value="German">German</option>
+            <option style="color: black;" value="Portuguese">Portuguese</option>
+            <option style="color: black;" value="Russian">Russian</option>
+            <option style="color: black;" value="Arabic">Arabic</option>
+          </select>
+        </div>
+        <div class="input-wrapper">
+          <input type="text" id="user-input" placeholder="Message in  English ..."
+            onkeypress="handleKey(event)" />
+          <button onclick="sendMessage()" id="send-btn">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
+
 </html>

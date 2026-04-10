@@ -170,3 +170,24 @@ button {
 }
 
 button:hover { background: var(--secondary); transform: translateY(-2px); }
+
+.language-select {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 10px;
+}
+
+.language-select select {
+  flex: 1;
+  background: rgba(255,255,255,0.05);
+  border: none;
+  color: white;
+  padding: 8px;
+  border-radius: 10px;
+}
+
+.language-select i{
+  color: white;
+}
