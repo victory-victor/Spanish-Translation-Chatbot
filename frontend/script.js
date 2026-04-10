@@ -18,11 +18,11 @@ window.onload = () => {
             ease: "back.out(1.7)"
         });
     }
-    // ✅ Speak welcome message ONCE when page loads
-    speakText(
-        "Hola Bonjour Hallo नमस्ते مرحبا こんにちは 你好! Transform your English into a powerful global voice — translate instantly into Español, Français, Deutsch, हिन्दी, العربية, 日本語, and 中文, and connect, share, and be understood everywhere, effortlessly! ¡Vamos!"
-    );
 };
+
+document.addEventListener("click", () => {
+    speakText("Hola Bonjour Hallo नमस्ते مرحبا こんにちは 你好! Transform your English into a powerful global voice — translate instantly into Español, Français, Deutsch, हिन्दी, العربية, 日本語, and 中文, and connect, share, and be understood everywhere, effortlessly! ¡Vamos!");
+}, { once: true });
 
 // ✅ Add a message to chat box with GSAP animation
 function addMessage(text, sender) {
@@ -81,7 +81,7 @@ function speakText(text, language) {
         English: "en-US"
     };
 
-    utterance.lang = langMap[language] || "de-DE";
+    utterance.lang = langMap[language] || "es-ES";
     utterance.rate = 1;
     utterance.pitch = 1;
 
